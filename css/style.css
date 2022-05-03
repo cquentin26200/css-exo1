@@ -7,6 +7,9 @@ body {
   font-size: 1rem;
   line-height: 1;
   display: grid;
+  grid-template-areas: "header" "header" "header"
+                       "aside"  "main"   "main"                   
+                       "footer" "footer" "footer"                   ;
 }
 
 ul {
@@ -32,8 +35,6 @@ header {
   background-image: url(/img/bg-header.jpg);
   height: 15rem;
   background-size: cover;
-  grid-column-start: 1;
-  grid-column-end: 4;
 }
 
 header nav {
@@ -61,16 +62,11 @@ header ul li a:hover {
 }
 
 main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
   text-align: center;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 2;
 }
 
-main article+article {
+main article:nth-of-type(even) {
     margin-left: 5rem;
 }
 
@@ -78,6 +74,7 @@ main section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    grid-area: 1 / 2;
 }
 
 main section h1 {
@@ -94,13 +91,13 @@ main article:not(main section article:first-of-type) {
 
 main aside p::first-letter {
     font-size: 4rem;
+    margin: 0;
 }
 
 footer {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  text-align: center;
-  grid-row-start: 3;
+    text-align: center;
+    height: 5rem;
+    margin: 1rem 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -122,7 +119,16 @@ footer {
         max-width: 1200px;
     }
 
+    main {
+        flex-wrap: unset;
+        flex-direction: row-reverse;
+    }
+
     main section article:not(main article:first-of-type) {
         display: block;
+      }
+
+      aside {
+        width: 10rem;
       }
 }
