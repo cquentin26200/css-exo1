@@ -20,7 +20,12 @@ a {
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 576px;
+  margin: 0 auto;
 }
 
 header {
@@ -56,26 +61,68 @@ header ul li a:hover {
 }
 
 main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+}
+
+main article+article {
+    margin-left: 5rem;
+}
+
+main section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    max-width: 576px;
-    margin: 0 auto;
+}
+
+main section h1 {
+    flex-basis: 100%;
 }
 
 main img {
-    width: clamp(350px, 50%, 500px);
+  width: clamp(350px, 50%, 500px);
 }
 
-main section article:not(main section article:first-of-type) {
-    display: none;
+main article:not(main section article:first-of-type) {
+  display: none;
+}
+
+main aside p::first-letter {
+    font-size: 4rem;
 }
 
 footer {
   grid-column-start: 1;
   grid-column-end: 4;
   text-align: center;
+  grid-row-start: 3;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  main section article:not(main section article:nth-of-type(n+3)) {
+    display: block;
+  }
+
+  main article {
+    width: 35%;
+}
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    main section article:not(main article:first-of-type) {
+        display: block;
+      }
 }
